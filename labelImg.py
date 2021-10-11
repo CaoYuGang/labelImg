@@ -510,13 +510,16 @@ class MainWindow(QMainWindow, WindowMixin):
             self.open_dir_dialog(dir_path=self.file_path, silent=True)
 
     def keyReleaseEvent(self, event):
+        # if event.key() == Qt.Key_Control:
+        #     self.canvas.set_drawing_shape_to_square(False)
+        # 当释放键盘按键时，正方标识设为选中值[self.draw_squares_option.isChecked()]
         if event.key() == Qt.Key_Control:
-            self.canvas.set_drawing_shape_to_square(False)
+            self.canvas.set_drawing_shape_to_square(self.draw_squares_option.isChecked())
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Control:
             # Draw rectangle if Ctrl is pressed
-            self.canvas.set_drawing_shape_to_square(True)
+            self.canvas.set_drawing_shape_to_square(self.draw_squares_option.isChecked())
 
     # Support Functions #
     def set_format(self, save_format):
